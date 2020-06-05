@@ -37,17 +37,21 @@ router.post('/', validateProps("name"), validateProps("description"), (req,res) 
     })
 });
 
-router.put('/:id', validateProjectId, (req,res) => {
-  if(req.body.name === '' || req.body.description === '') {
-    res.status(400).json({ message: "Please provide the name and description" });
+router.put('/:id', (req,res) => {
+  console.log(req.body);
+  const edit = req.body;
+  if(!req.params.id) {
+    res.status(404).json({ message: "The project with the specified ID does not exist." });
+  } else if(edit.name === '' || edit.description === '') {
+    res.status(400).json({ errorMessage: "Please provide the name and description for the project." });
   } else {
-    Projects.update(req.params.id, req.body)
+    Projects.update(req.params.id, edit)
       .then(project => {
-        res.status(200).json(req.body);
+        res.status(200).json(edit);
       })
       .catch(err => {
         console.log(err);
-        res.status(500).json({ message: "There was an error updating the project" });
+        res.status(500).json({ error: "The project information could not be modified." });
       })
   }
 });

@@ -14,7 +14,7 @@ function App() {
   }, []);
 
   const fetchProjects = () => {
-    axios.get('localhost:5000/projects')
+    axios.get('https://node-api-sprint.herokuapp.com/projects')
       .then(res => {
         setProjects(res.data);
       })
@@ -22,10 +22,11 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className ='App'>
       <Route exact path='/'>
+        <h1>Projects from Node API</h1>
+        <ProjectForm fetchProjects={fetchProjects} /> 
         <ProjectList projects={projects} />
-        <ProjectForm fetchProjects={fetchProjects} />
       </Route>
 
       <Route path='/:id'>

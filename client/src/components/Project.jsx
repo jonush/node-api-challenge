@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const Project = ({ fetchProjects }) => {
   const [ edit, setEdit ] = useState([]);
   const [ editing, setEditing ] = useState(false);
-  const [ finished, setFinished ] = useState(edit.completed);
   const [ actions, setActions ] = useState([]);
   const history = useHistory();
   const { id } = useParams();
@@ -15,18 +14,16 @@ const Project = ({ fetchProjects }) => {
     getActions();
   }, []);
 
-  const getProject = e => {
-    e.preventDefault();
-    axios.get(`localhost:5000/projects/${id}`)
+  const getProject = () => {
+    axios.get(`https://node-api-sprint.herokuapp.com/projects/${id}`)
       .then(res => {
-        setEdit(res.data[0]);
+        setEdit(res.data);
       })
       .catch(err => console.log(err));
   };
 
-  const getActions = e => {
-    e.preventDefault();
-    axios.get(`localhost:5000/projects/${id}/actions`)
+  const getActions = () => {
+    axios.get(`https://node-api-sprint.herokuapp.com/projects/${id}/actions`)
       .then(res => {
         setActions(res.data);
       })
@@ -40,27 +37,19 @@ const Project = ({ fetchProjects }) => {
     })
   };
 
-  const toggleProject = () => {
-    setFinished(!edit.completed);
-    setEdit({
-      ...edit,
-      completed: finished
-    });
-    handleSubmit();
-  }
-
   const handleSubmit = e => {
     e.preventDefault();
-    axios.put(`localhost:5000/projects/${id}`, edit)
+    axios.put(`https://node-api-sprint.herokuapp.com/projects/${id}`, edit)
       .then(res => {
         setEditing(false);
+        getProject();
       })
       .catch(err => console.log(err));
   };
 
   const deleteProject = e => {
     e.preventDefault();
-    axios.delete(`localhost:5000/projects/${id}`)
+    axios.delete(`https://node-api-sprint.herokuapp.com/projects/${id}`)
       .then(res => {
         fetchProjects();
         history.push('/')
@@ -74,42 +63,38 @@ const Project = ({ fetchProjects }) => {
       <div className='project'>
         <h1>{edit.name}</h1>
         <h3>{edit.description}</h3>
-        {finished ? 
-          <h2 className='no' onClick={toggleProject}>{finished}</h2> :
-          <h2 className='yes' onClick={toggleProject}>{finished}</h2>
-        }
+        {!edit.completed ? <h2 className='no'>Incomplete</h2> : <h2 className='yes'>Completed</h2>}
 
         {
           actions.map((action, index) => (
             <div className='action' key={index}>
               <h3>{action.description}</h3>
               <p>{action.notes}</p>
-              <h2>{action.completed}</h2>
+              {!action.completed ? <h2 className='no'>Incomplete</h2> : <h2 className='yes'>Completed</h2>}
             </div>
           ))
         }
 
         <button onClick={() => setEditing(true)}>Edit Project</button>
-        <button onClick={deleteProject}>Delete</button>
-        <button onClick={() => history.push('/projects')}>Back</button>
+        <button className='cancel' onClick={() => history.push('/')}>Back</button>
       </div> :
       <form onSubmit={handleSubmit}>
-        <input 
-          type='text'
+        <h1>Edit your project</h1>
+        <textarea 
           name='name'
           value={edit.name}
           onChange={handleEdit}
         />
 
-        <input 
-          type='text'
+        <textarea 
           name='description'
           value={edit.description}
           onChange={handleEdit}
         />
 
         <button type='submit'>Save</button>
-        <button onClick={() => setEditing(false)}>Cancel</button>
+        <button className='delete' onClick={deleteProject}>Delete</button>
+        <button className='cancel' onClick={() => setEditing(false)}>Cancel</button>
       </form>
       }
     </div>

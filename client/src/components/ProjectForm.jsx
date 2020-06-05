@@ -21,7 +21,7 @@ const ProjectForm = ({ fetchProjects }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    axios.post('localhost:5000/projects', project)
+    axios.post('https://node-api-sprint.herokuapp.com/projects', project)
       .then(res => {
         fetchProjects();
         history.push('/');
@@ -37,19 +37,21 @@ const ProjectForm = ({ fetchProjects }) => {
           <input 
             type='text'
             name='name'
+            placeholder='Name'
             value={project.name}
             onChange={handleInput}
           />
 
           <input 
             type='text'
+            placeholder='Description'
             name='description'
             value={project.description}
             onChange={handleInput}
           />
 
           <button type='submit'>Create Project</button>
-          <button onClick={() => setCreating(false)}>Cancel</button>
+          <button className='cancel' onClick={() => setCreating(false)}>Cancel</button>
         </form>
       }
     </div>

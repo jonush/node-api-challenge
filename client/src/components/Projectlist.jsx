@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom';
 
 const ProjectList = ({ projects }) => {
   return (
-    <div>
-      <h1>Projects from Node API</h1>
+    <div className='list'>
       {
         projects.map((p, index) => (
-          <Link key={index} to='/:id'>
+          <Link key={index} to={`/${p.id}`}>
             <h2>{p.name}</h2>
           </Link>
         ))

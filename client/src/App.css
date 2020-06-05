@@ -1,38 +1,100 @@
 .App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.list a {
+  text-decoration: none;
+  color: seagreen;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.list a:hover {
+  color: rgb(41, 96, 65);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+form {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+input {
+  border: none;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  margin: 1rem;
+  color: black;
+  background: rgb(189, 189, 189);
+  width: 200px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+textarea {
+  border: none;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  margin: 1rem;
+  color: black;
+  background: rgb(189, 189, 189);
+  width: 400px;
+  height: 100px;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  background: seagreen;
+  color: black;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: .7rem 1rem;
+  margin: 1rem;
+  width: 260px;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: rgb(41, 96, 65);
+}
+
+.cancel {
+  background: rgb(189, 189, 189);
+}
+
+.delete {
+  background: rgb(186, 73, 73);
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 600px;
+}
+
+.action {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0 auto;
+  width: 600px;
+  background: rgb(196, 196, 196);
+  border: none;
+  border-radius: 10px;
+  margin: 1rem auto;
+  padding: 1rem 2rem;
+}
+
+.no {
+  color: rgb(186, 73, 73);
+}
+
+.yes {
+  color: seagreen;
 }
