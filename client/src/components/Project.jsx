@@ -41,8 +41,8 @@ const Project = ({ fetchProjects }) => {
     e.preventDefault();
     axios.put(`https://node-api-sprint.herokuapp.com/projects/${id}`, edit)
       .then(res => {
+        fetchProjects();
         setEditing(false);
-        getProject();
       })
       .catch(err => console.log(err));
   };
