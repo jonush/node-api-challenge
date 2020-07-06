@@ -1,0 +1,100 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.list a {
+  text-decoration: none;
+  color: seagreen;
+}
+
+.list a:hover {
+  color: rgb(41, 96, 65);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  border: none;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  margin: 1rem;
+  color: black;
+  background: rgb(189, 189, 189);
+  width: 200px;
+}
+
+textarea {
+  border: none;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  margin: 1rem;
+  color: black;
+  background: rgb(189, 189, 189);
+  width: 400px;
+  height: 100px;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  background: seagreen;
+  color: black;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: .7rem 1rem;
+  margin: 1rem;
+  width: 260px;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: rgb(41, 96, 65);
+}
+
+.cancel {
+  background: rgb(189, 189, 189);
+}
+
+.delete {
+  background: rgb(186, 73, 73);
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 600px;
+}
+
+.action {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0 auto;
+  width: 600px;
+  background: rgb(196, 196, 196);
+  border: none;
+  border-radius: 10px;
+  margin: 1rem auto;
+  padding: 1rem 2rem;
+}
+
+.no {
+  color: rgb(186, 73, 73);
+}
+
+.yes {
+  color: seagreen;
+}

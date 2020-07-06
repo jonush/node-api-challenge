@@ -40,13 +40,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+I learned about express as a framework for node.js. Express offers regular middleware as well as error-handling middleware. We can create custom middleware as well. It also enables routing for the server to separate API calls in a more organized manner.
+
 - [ ] Describe Middleware?
+
+Middleware enables express to do new things—it can retrieve responses and response objects. We can also create custom middleware which can be useful for validation/authentication. There is built-in middleware, third-party middleware, and custom middleware. Express offers error-handling middleware as well.
 
 - [ ] Describe a Resource?
 
+A resource can be any particular item of data that the client can be looking for from the server. These resources may be stored in databases.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+The API should return status codes with JSON messages to provide the user with a clear idea of how their request has been handled, if at all.
+
 - [ ] How can we partition our application into sub-applications?
+
+We can use express to create sub-applications inside an app. THe use of routing can help us organize how we want to divide up the application.
 
 ## Minimum Viable Product
 
